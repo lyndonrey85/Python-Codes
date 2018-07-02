@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Please Take This Short Survey</h1>
+    <form action='/result' method="post">
+        <p>
+            First name: <input type="text" name="fname">
+        </p>
+        <p>
+            Last Name:<input type="text" name="lname">
+        </p>
+            City:<input type="text" name="city">
+        <p>How did you hear about us?</p>
+           Choose
+            <select name="choose" id="choose">
+            <option value="blank"></option>
+            <option value="friends">Friends</option>
+            <option value="family">Family</option>
+            <option value="social">Social Media</option>
+            <option value="word">Word of mouth</option>
+            </select>
+                <p>Comments(optional)</p>
+                <textarea id="desc" cols="50" rows="10"></textarea>
+            <input type="submit">
+    </form>
+</body>
+</html>

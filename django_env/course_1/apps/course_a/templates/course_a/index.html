@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
+</head>
+<body>
+    <h2>Add a new course</h2>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form action='/course_a/create{{review.id}}' method="post">
+        {% csrf_token %}
+        <div class="form">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+        </div>
+        <div class="form">
+            <label for="desc">Description</label>
+            <textarea type="text" rows="7" cols="50" name="desc"></textarea>
+        </div>
+        <input type="submit" value="Add">
+    </form>
+    <hr>
+    <h2>Courses</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.name }}</td>
+                <td>{{ course.desc }}</td>
+                <td>{{ course.created_at }}</td>
+                <td><a href="{% url 'course_a:show' course.id %}"><button type="">Show</button></a></td>
+                <td><a href="{% url 'course_a:favorite' course.id %}"><button type="">Favorite</button></a></td>
+                <td><a href="{% url 'course_a:delete' course.id %}"><button type="">Remove</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Favorite Courses</h2>
+    <table>
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in favorites %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.desc }}</td>
+                    <td>{{ course.created_at }}</td>
+                    <td><a href="{% url 'course_a:show' course.id %}"><button type="">Show</button></a></td>
+                    <td><a href="{% url 'course_a:delete' course.id %}"><button type="">Remove</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+</body>
+</html>

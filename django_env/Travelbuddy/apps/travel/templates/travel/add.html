@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h5><a href="/logout">Log out</a> | <a href="/travel">Home</a></h5>
+    <div class="container">
+        <table>
+            <tbody>
+                <thead>
+                    <th><h3>{{travel.destination}}</h3></th>
+                </thead>
+                <tr>
+                    <td>Planed By:  {{travel.creator.name}}</td>
+                </tr>
+                <tr>
+                     <td>Description: {{travel.description}}</td>
+                </tr>
+                <tr>
+                     <td>Travel Date From: {{travel.start}}</td>
+                </tr>
+                <tr>
+                      <td>Travel Date To:  {{travel.end}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <br>
+    <div class="container">
+        <h4>Other User's Joining the Trip</h4>
+            {%for user in others%}
+               <h5> {{user.name}}</h5>
+            {%endfor%}
+        <br>
+          {%if travel.creator.id == user.id%}
+              <h5><a href="/delete/{{travel.id}}">Delete</a></h5>
+          {%endif%}  
+</body>
+</html>

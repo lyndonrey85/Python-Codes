@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="centralize">
+            <h3>Confirm Removal</h3>
+        <div class="panel panel-default">
+        <div class="panel-heading">Are you sure you want to delete the following courses?</div>
+        <div class="panel-body">
+            Name: {{course.course_name}}
+        </div>
+         <div class="panel-body">
+            Description: {{course.description}}
+        </div>
+        <div id="formid">
+            <form action="{% url 'index' %}">
+            {% csrf_token %}
+            <input class="btn btn-default" type="submit" value ="No">
+            </form>
+        </div>
+        <div id="formid">
+        <form action="{% url 'removethis' id=course.id%}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-default" type="submit" value ="Yes, I want to delete this">
+        </form>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

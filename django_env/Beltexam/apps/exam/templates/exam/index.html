@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
+</head>
+<body>
+    <table>
+            <h2>Here is you list of friends:</h2>
+        <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for friend in friends %}
+            <tr>
+                <td>{{ friend.alias }}</td>
+                <td><a href="{% url 'exam:index' %}">View Profile</a></td>
+                <td><a href="{% url 'exam:index' %}">Remove as Friend</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Other Users not on your friends list:</h2>
+    <table>
+            <thead>
+                <tr>
+                    <th>Alias</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for friend in other_users %}
+                <tr>
+                    <td>{{ friend.alias }}</td>
+                    <td><a href="{% url 'exam:show' friend.id %}">{{ friend.alias }}</a></td>
+                    <td><a href="{% url 'exam:show' friend.id %}"><button>Add Friend</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+    <a href="">Log Out</a>
+</body>
+</html>
